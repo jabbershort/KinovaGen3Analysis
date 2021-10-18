@@ -11,7 +11,7 @@ code_printer = NumPyPrinter()
 # code_printer = CXX17CodePrinter()
 
 # Whether to include the gripper into the calculation or not
-gripper = True
+gripper = False
 
 q1, q2, q3, q4, q5, q6 = dynamicsymbols("q1 q2 q3 q4 q5 q6")
 q1p, q2p, q3p, q4p, q5p, q6p = dynamicsymbols("q1 q2 q3 q4 q5 q6", 1)
@@ -287,10 +287,9 @@ forcing = KM.forcing
 # Gravity term
 G = Matrix([-forcing[0].coeff(g) * g, -forcing[1].coeff(g) * g,
             -forcing[2].coeff(g) * g, -forcing[3].coeff(g) * g,
-            -forcing[4].coeff(g) * g, -forcing[5].coeff(g) * g,
-            -forcing[6].coeff(g) * g])
+            -forcing[4].coeff(g) * g, -forcing[5].coeff(g) * g])
 
-C = -(forcing + G).subs({TA: 0, TB: 0, TC: 0, TD: 0, TE: 0, TF: 0, TG: 0, g: 0,
+C = -(forcing + G).subs({TA: 0, TB: 0, TC: 0, TD: 0, TE: 0, TF: 0, g: 0,
                          Fx: 0, Fy: 0, Fz: 0})
 
 # Auto-z long expressions

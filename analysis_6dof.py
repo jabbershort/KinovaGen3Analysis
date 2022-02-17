@@ -11,7 +11,7 @@ code_printer = NumPyPrinter()
 # code_printer = CXX17CodePrinter()
 
 # Whether to include the gripper into the calculation or not
-gripper = False
+gripper = True
 
 q1, q2, q3, q4, q5, q6 = dynamicsymbols("q1 q2 q3 q4 q5 q6")
 q1p, q2p, q3p, q4p, q5p, q6p = dynamicsymbols("q1 q2 q3 q4 q5 q6", 1)
@@ -37,6 +37,7 @@ C = B.orientnew("C", "Body", [pi, 0, q3], "123")
 D = C.orientnew("D", "Body", [pi / 2, 0, q4], "123")
 E = D.orientnew("E", "Body", [-pi / 2, 0, q5], "123")
 F = E.orientnew("F", "Body", [pi / 2, 0, q6], "123")
+
 # The interface module's reference frame
 G = F.orientnew("G", "Body", [pi, 0, 0], "123")
 
@@ -46,18 +47,18 @@ G = F.orientnew("G", "Body", [pi, 0, 0], "123")
 P0 = Point("O")
 P1 = P0.locatenew("P1", 0.1564 * N.z)
 P2 = P1.locatenew("P2", 0.0054 * A.y - 0.1284 * A.z)
-P3 = P2.locatenew("P3", -0.410*B.z)
-P4 = P3.locatenew("P4", -0.2084 * C.y - 0.0064 * C.z)
+P3 = P2.locatenew("P3", -0.410 * B.y)
+P4 = P3.locatenew("P4", 0.2084 * C.y - 0.0064 * C.z)
 P5 = P4.locatenew("P5", -0.1059 * D.z)
-P6 = P5.locatenew("P6", -0.1059 * E.y)
+P6 = P5.locatenew("P6", 0.1059 * E.y)
 P7 = P6.locatenew("P7", -0.0615 * F.z)
 
 # Mid-point of each link
 Ao_half = P1.locatenew("P1_half", 0.0054 / 2 * A.y - 0.1284 / 2 * A.z)
-Bo_half = P2.locatenew("P2_half", -0.410 / 2 * B.z)
-Co_half = P3.locatenew("P3_half", -0.2084 / 2 * C.y - 0.0064 / 2 * C.z)
+Bo_half = P2.locatenew("P2_half", -0.410 / 2 * B.y)
+Co_half = P3.locatenew("P3_half", 0.2084 / 2 * C.y - 0.0064 / 2 * C.z)
 Do_half = P4.locatenew("P4_half", -0.1059 / 2 * D.z)
-Eo_half = P5.locatenew("P5_half", -0.1059 / 2 * E.y)
+Eo_half = P5.locatenew("P5_half", 0.1059 / 2 * E.y)
 Fo_half = P6.locatenew("P6_half", -0.0615 / 2 * F.z)
 
 # End-effector position  (tcp)
